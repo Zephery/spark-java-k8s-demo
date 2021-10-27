@@ -1,0 +1,39 @@
+apiVersion: "sparkoperator.k8s.io/v1beta2"
+kind: SparkApplication
+metadata:
+  name: spark-java-k8s-demo
+  namespace: default
+spec:
+  type: Scala
+  mode: cluster
+  image: "mirrors.tencent.com/wzh-test/spark-java-k8s-demo:latest"
+  imagePullPolicy: Always
+  mainClass: com.spark.java.k8s.demo.WordCount
+  mainApplicationFile: "local:///app/target/spark-java-k8s-demo-1.0-SNAPSHOT-jar-with-dependencies.jar"
+  sparkVersion: "3.1.1"
+  restartPolicy:
+    type: Never
+  volumes:
+    - name: "test-volume"
+      hostPath:
+        path: "/tmp"
+        type: Directory
+  driver:
+    cores: 1
+    coreLimit: "1200m"
+    memory: "512m"
+    labels:
+      version: 3.1.1
+    serviceAccount: spark
+    volumeMounts:
+      - name: "test-volume"
+        mountPath: "/tmp"
+  executor:
+    cores: 1
+    instances: 1
+    memory: "512m"
+    labels:
+      version: 3.1.1
+    volumeMounts:
+      - name: "test-volume"
+        mountPath: "/tmp"
