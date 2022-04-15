@@ -6,7 +6,7 @@ metadata:
 spec:
   type: Scala
   mode: cluster
-  image: "zepherywen/spark-java-k8s-demo:latest"
+  image: "ccr.ccs.tencentyun.com/wzh-image/spark-java-k8s-demo:latest"
   imagePullPolicy: Always
   mainClass: com.spark.java.k8s.demo.WordCount
   mainApplicationFile: "local:///app/target/spark-java-k8s-demo-1.0-SNAPSHOT-jar-with-dependencies.jar"
