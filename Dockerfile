@@ -1,4 +1,4 @@
-FROM gcr.io/spark-operator/spark:v3.1.1
+FROM ccr.ccs.tencentyun.com/wzh-image/spark-operator:v3.1.1
 
 ADD target/spark-java-k8s-demo-1.0-SNAPSHOT-jar-with-dependencies.jar /app/target/spark-java-k8s-demo-1.0-SNAPSHOT-jar-with-dependencies.jar
 
